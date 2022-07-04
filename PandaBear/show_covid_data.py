@@ -1,6 +1,15 @@
 #! /usr/bin/python3.8
 
 import pandas as pd
+import os
+import requests
+
+filename = 'owid-covid-data.csv' 
+url = 'https://github.com/owid/covid-19-data/raw/master/public/data/owid-covid-data.csv'
+
+if ( not os.path.exists( filename ) ):
+	resp = requests.get( url, "wb" )
+	open(filename, "wb").write(resp.content)
 
 cov = pd.read_csv("owid-covid-data.csv")
 
